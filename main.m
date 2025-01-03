@@ -1,7 +1,9 @@
 % Define array of our PRNGs
-f = cell(2,1);
+f = cell(4,1);
 f{1} = @rand_mult;
 f{2} = @rand_multiadd;
+f{3} = @randu;
+f{4} = @middle_square;
 
 
 % Generate data
