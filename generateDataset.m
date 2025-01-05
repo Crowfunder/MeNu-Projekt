@@ -7,7 +7,7 @@
 % generateDataset(6969, 5, 10, f)
 
 
-function dataset = generateDataset(seed, N_of_sequences, nums_per_sequence, generators)
+function dataset = generateDataset(seed, N_of_sequences, nums_per_sequence, generators, shuffle)
     % seed - randgen seed
     % N_of_sequences - number of sequences per generator
     % numbers per sequence - datapoints per sequence
@@ -23,6 +23,11 @@ function dataset = generateDataset(seed, N_of_sequences, nums_per_sequence, gene
         % Generate selected N_of_sequences
         % Has to be generated as a single sequence and split into parts
         generated_sequences = generators{n}(nums_per_sequence*N_of_sequences, seed);
+
+        % Normalize
+        generated_sequences = generated_sequences/max(generated_sequences);
+
+        % Split into sequences columns
         generated_sequences = reshape(generated_sequences,nums_per_sequence,[]);
 
         for seq=1+iter_offset:N_of_sequences+iter_offset
@@ -32,5 +37,8 @@ function dataset = generateDataset(seed, N_of_sequences, nums_per_sequence, gene
         iter_offset = iter_offset + N_of_sequences;
     end
 
+    if (shuffle) 
+        dataset = dataset(randperm(size(dataset, 1)), :);
+    end
 
 end
