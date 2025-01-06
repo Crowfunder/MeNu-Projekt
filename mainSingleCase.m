@@ -1,9 +1,11 @@
 % Define array of our PRNGs
-f = cell(4,1);
+f = cell(6,1);
 f{1} = @rand_mult;
 f{2} = @rand_multiadd;
 f{3} = @randu;
 f{4} = @middle_square;
+f{5} = @xorshift32;
+f{6} = @xorshift128;
 
 % Generate data
   N_klas = length(f);         % number of PRNGs
