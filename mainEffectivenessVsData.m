@@ -59,6 +59,7 @@ title("Dataset size vs Effectiveness");
 xlabel("Liczba wzorców");
 ylabel("Liczba cech");
 zlabel("Efektywność Regresji Logistycznej")
+subtitle("Lambda =" + lambda);
 
 
 function [cost, gradients] = optim_callback( X, y, w, lambda )
